@@ -43,6 +43,7 @@ export default ->
         c_InputItem {
           ref: 'RefInput'
           placeholder: '请输入你想输入的内容'
-          onChange: -> dd 'Hello World!!!'
+          onChange:
+            (v) -> dd v
           clear: true
         }
