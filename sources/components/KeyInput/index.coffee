@@ -14,7 +14,13 @@ CFX = prefixDom {
   HotKeys
 }
 
-export default ->
+class StoryKeyInput extends Component
+
+  constroutor: (props) ->
+    super props
+    @state =
+      todo: ''
+    @
 
   render: ->
 
@@ -24,26 +30,25 @@ export default ->
       c_List
       c_HotKeys
     } = CFX
-    
-    keyMap = 
-      clear: 'enter'
 
-    handlers = 
-      clear: (
-        -> @refs.RefInput.clearInput()
-      ).bind @
-
-    c_HotKeys {
-      keyMap
-      handlers
-    }
+    c_HotKeys
+      keyMap:
+        submit: 'enter'
+      handlers:
+        submit: ( ->
+          console.log @state.todo
+          @refs.RefInput.clearInput()
+        ).bind @
     ,
       c_List {}
       ,
-        c_InputItem {
+        c_InputItem
           ref: 'RefInput'
           placeholder: '请输入你想输入的内容'
-          onChange:
-            (v) -> dd v
+          onChange: (
+            (v) =>
+              @setState todo: v         
+          ).bind @
           clear: true
-        }
+
+export default StoryKeyInput          
